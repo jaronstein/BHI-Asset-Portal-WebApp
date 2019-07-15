@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHI Asset Portal WebApp", "BHI Asset Portal WebApp\BHI Asset Portal WebApp.csproj", "{5D69F110-C675-45CD-A4C9-31D9326DF710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHI Asset Portal WebApp.Tests", "BHI Asset Portal WebApp.Tests\BHI Asset Portal WebApp.Tests.csproj", "{8A28EB7D-EBFE-4F33-AD9E-6EB5A2E21136}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D69F110-C675-45CD-A4C9-31D9326DF710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D69F110-C675-45CD-A4C9-31D9326DF710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D69F110-C675-45CD-A4C9-31D9326DF710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D69F110-C675-45CD-A4C9-31D9326DF710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A28EB7D-EBFE-4F33-AD9E-6EB5A2E21136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A28EB7D-EBFE-4F33-AD9E-6EB5A2E21136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A28EB7D-EBFE-4F33-AD9E-6EB5A2E21136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A28EB7D-EBFE-4F33-AD9E-6EB5A2E21136}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {296B3EB6-38BD-43E2-B17F-56E4C4ACB3CC}
+	EndGlobalSection
+EndGlobal
