@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BHI_Asset_Portal_WebApp.Models.LineItem>
+
+@{
+    ViewBag.Title = "LineItemList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Past Line Items</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationSublocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Brand)
+        </th>
+        <th>
+            Advertising Type
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationSublocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Brand)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Creative.First().AdTypeText)
+        </td>
+        <td>
+            @Html.ActionLink("ViewCreative", "View Creative", new { id=item.LineItemID }) 
+        </td>
+    </tr>
+}
+
+</table>

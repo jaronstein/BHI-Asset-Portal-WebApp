@@ -1,0 +1,102 @@
+﻿@model BHI_Asset_Portal_WebApp.Models.RealtorDotCom
+
+    
+<div class="form-horizontal">
+    @Html.HiddenFor(model => model.CreativeSetID, new { @class = "CreativeSetID" })
+
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Size
+                </th>
+                <th>
+                    Creative
+                </th>
+                <th>
+                    Landing Page URL
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Medium Rectangle  300 x 250
+                </th>
+                <td>
+                    @*<div style="width:300px; height:250px;" class="CreativeImageUpload dropzone" id="creativeImageUpload" addRemoveLinks="true" action="/CreativeSets/UploadFile" data-creativesetid="@Model.CreativeSetID" ></div>
+                    <script>
+                        Dropzone.options.creativeImageUpload = {
+                            addRemoveLinks: true,
+                            maxFiles: 1,
+                            createImageThumbnails: true,
+                            thumbnailWidth: 350,
+                            thumbnailHeight: 200,
+                            thumbnailMethod: 'contain',
+                            acceptedFiles: 'image/*',
+                            resizeWidth: 350,
+                            resizeHeight: 200,
+                            params: {
+                                creativesetid: '@Model.CreativeSetID',
+                                creativename: '@Model.Line.Product',
+                                creativesize: 'Medium_Rectangle',
+                                columnname: 'CreativeImageURL'
+                            },
+                            init: function () {
+                                var mockFile = { name: "Filename", size: 12345 };
+
+                                // Call the default addedfile event handler
+                                this.emit("addedfile", mockFile);
+
+                                // And optionally show the thumbnail of the file:
+                                //change this to be dynamic'
+                                this.emit("thumbnail", mockFile, "@Model.CreativeImageURL");
+
+                                this.emit("complete", mockFile);
+                                this.on("thumbnail", function (file) {
+                                    console.log('inside check file dimensions');
+                                    if (file.width != 300 || file.height != 250) {
+                                        file.rejectDimensions();
+                                    }
+                                    else {
+                                        file.acceptDimensions();
+                                    }
+                                });
+                                this.on("removedfile", function (file) {
+                                    console.log('removingfile');
+                                    $.post("/CreativeSets/DeleteFile",
+                                        {
+                                            CreativeSetID: '@Model.CreativeSetID',
+                                            ColumnName: 'CreativeImageURL',
+                                            
+                                        }
+                                    );
+
+                                });
+                            },
+                            accept: function (file, done) {
+                                file.rejectDimensions = function () {
+                                    done("Please make sure the image width and height are the correct dimensions.");
+                                };
+                                file.acceptDimensions = done;
+                            },
+                            
+
+
+                        }
+                    </script>*@
+                    @Html.EditorForModel("ImageUpload",  new{  Width = 300, Height = 250, CreativeSize = "Medium_Rectangle", ColumnName="CreativeImageURL" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.CreativeLandingPageURL, "URLField", new { SetIDName = "CreativLandingPageURL"+Model.CreativeSetID })
+                </td>
+            </tr>
+        </thead>
+    </table>
+   
+
+     
+</div>
+
+

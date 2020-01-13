@@ -1,0 +1,22 @@
+﻿@model string
+@{
+    var giveMaxLength = ViewData["MaxLength"];
+    bool multiline = ViewData["MultLine"] != null ? bool.Parse(ViewData["MultLine"].ToString()) : false;
+
+}
+@if (multiline)
+{
+    @Html.TextArea("", Model, new { @class = "max-length-input form-control", required = "", MaxLength = giveMaxLength, placeholder = giveMaxLength.ToString() + " character limit", id = ViewData["SetIDName"] })
+}
+else
+{
+    @Html.TextBox("", Model, new { @class = "max-length-input form-control", required = "", MaxLength = giveMaxLength, placeholder = giveMaxLength.ToString() + " character limit", id = ViewData["SetIDName"] })
+}
+
+<div class="the-count" style="display:block">
+    <span class="current">0</span>
+    <span class="maximum">/ @giveMaxLength</span>
+</div>
+
+
+

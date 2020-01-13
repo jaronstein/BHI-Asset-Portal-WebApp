@@ -1,0 +1,103 @@
+﻿@model BHI_Asset_Portal_WebApp.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BHIOrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BHIOrderNumber)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountManager)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountManager)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastSubmittedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastSubmittedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastSavedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastSavedDate)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,43 @@
+﻿@model BHI_Asset_Portal_WebApp.Models.FacebookAds
+
+<div class="form-horizontal">
+    @Html.HiddenFor(model => model.CreativeSetID, new { @class = "CreativeSetID" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FacebookHeroImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorForModel("ImageUpload", new { Width = 1200, Height = 628, CreativeSize = "Faceboo_HeroImage", ColumnName = "FacebookHeroImageURL", Ratio = 2 })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FacebookHeadlineCopy, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FacebookHeadlineCopy, "InputMaxLength", new { MaxLength = 45 })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FacebookBodyCopy, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FacebookBodyCopy, "InputMaxLength", new { MaxLength = 90, MultiLine = "true" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FacebookCallToActionCopy, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FacebookCallToActionCopy, "InputMaxLength", new { MaxLength = 20, MultiLine = "true" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FacebookLandingURL, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FacebookLandingURL, "URLField", new { SetIDName = "FacebookLandingURL" + Model.CreativeSetID })
+
+        </div>
+    </div>
+
+</div>
+

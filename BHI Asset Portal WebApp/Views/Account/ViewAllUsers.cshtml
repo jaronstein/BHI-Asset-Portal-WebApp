@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BHI_Asset_Portal_WebApp.ViewModels.RolesViewModel>
+
+@{
+    ViewBag.Title = "View All users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manage User Accounts</h2>
+
+<p>
+    @Html.ActionLink("Create New Account", "Register", "Account" )
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Roles)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Roles, "Roles")
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditUser", new { id=item.Id }) 
+         </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BHI_Asset_Portal_WebApp.Models.CreativeSet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SpecialInstructions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScreenShotUrl)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpecialInstructions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScreenShotUrl)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CreativeSetID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CreativeSetID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CreativeSetID })
+        </td>
+    </tr>
+}
+
+</table>

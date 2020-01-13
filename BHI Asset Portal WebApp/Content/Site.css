@@ -1,8 +1,7 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 100px;
 }
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -14,11 +13,412 @@
 */
 .dl-horizontal dt {
     white-space: normal;
+    padding-right: 15px;
+    display:table;
+    
+   text-align:left !important;
+    margin-left:50px;
+}
+
+.dl-vertical dt{
+    width:100%;
+}
+
+label .error{
+    margin-left:15px;
+    color:red;
+}
+
+.navbar {
+    background-color: darkslateblue!important;
+    background-image:none!important;
+    color:white!important;
+}
+
+.navbar-inverse .navbar-brand {
+    color:white!important;
+    border:none!important;
+
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color:white!important;
+}
+
+table {
+    width: 100%;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
-textarea {
-    max-width: 280px;
+textarea{
+    max-width: 450px;
+}
+
+.roles-listbox select{
+    height:100px;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+.glyphicon .glyphicon-ok {
+    margin-left: -25px;
+    pointer-events: none;
+    color:green;
+
+}
+.max-width{
+    max-width: 266px;
+    width:266px;
+}
+
+.glyphicon .glyphicon-remove {
+    margin-left: -20px;
+    pointer-events: none;
+    color: red;
+}
+
+input[type=text], input[type=url] {
+    padding-right: 30px;
+    display:inline-block;
+}
+
+input[type=url] {
+    height: 90px;
+}
+    .success {
+        color: green;
+    }
+
+.CreativeSet td{
+    vertical-align:top;
+
+}
+.instructions{
+    margin-top:20px;
+}
+.CreativeSet th{
+    vertical-align:top;
+}
+
+h5{
+    font-size:medium;
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    background-color: white;
+    border-color: gray;
+    border-top-style: solid;
+}
+.card{
+    display: inline-block;
+    margin-left:15px;
+    margin-right:15px;
+}
+
+td{
+    text-align:center;
+}
+table th {
+    text-align: center;
+}
+
+.error{
+   color:red;
+   padding-left:15px;
+}
+.ZipUploader > .dz-preview{
+    height:300px;
+    width:100%;
+}
+
+.Thank-you-for-your-o {
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.24px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Muli;
+}
+
+.navbar navbar-inverse navbar-fixed-top {
+    border:none!important;
+}
+
+.Work-Order-Number-A2 {
+    height: 26px;
+    font-size: 21px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Muli;
+}
+.Order-Name {
+    width: 104px;
+    height: 16px;
+    font-size: 12.6px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.27;
+    letter-spacing: 1.5px;
+    color: rgba(0, 0, 0, 0.87);
+    margin-top: -15px;
+    font-family: Muli;
+}
+
+.BDX_FULTONHOMES_AZ-P-Cop {
+    width: 441px;
+    height: 16px;
+    font-size: 12.6px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.27;
+    letter-spacing: 1.5px;
+    font-family: Muli;
+    color: rgba(0, 0, 0, 0.6);
+}
+.Body-2 {
+
+    font-size: 14.2px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.41;
+    letter-spacing: 0.25px;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 0px;
+    font-family: Muli;
+}
+.Body-3 {
+    width: 240px;
+    height: 20px;
+    font-size: 14.2px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.41;
+    letter-spacing: 0.25px;
+    color: rgba(0, 0, 0, 0.38);
+    font-family: Muli;
+}
+
+.right-border {
+    border-right-color: lightgray;
+    border-right-width: .5px;
+    border-right-style: solid;
+}
+
+.panel-default > .panel-heading{
+    background-color:white!important;
+    background-image:none!important;
+}
+
+.pure-material-textfield-outlined {
+    --pure-material-safari-helper1: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    position: relative;
+    display: inline-block;
+    padding-top: 6px;
+    font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+    /* Input, Textarea */
+    .pure-material-textfield-outlined > input,
+    .pure-material-textfield-outlined > textarea {
+        box-sizing: border-box;
+        margin: 0;
+        border: solid 1px; /* Safari */
+        border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+        border-top-color: transparent;
+        border-radius: 4px;
+        padding: 15px 13px 15px;
+        width: 100%;
+        height: inherit;
+        color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);
+        background-color: transparent;
+        box-shadow: none; /* Firefox */
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        caret-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+        transition: border 0.2s, box-shadow 0.2s;
+    }
+
+        /* Span */
+        .pure-material-textfield-outlined > input + span,
+        .pure-material-textfield-outlined > textarea + span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+            width: 100%;
+            max-height: 100%;
+            color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+            font-size: 75%;
+            line-height: 15px;
+            cursor: text;
+            transition: color 0.2s, font-size 0.2s, line-height 0.2s;
+        }
+
+            /* Corners */
+            .pure-material-textfield-outlined > input + span::before,
+            .pure-material-textfield-outlined > input + span::after,
+            .pure-material-textfield-outlined > textarea + span::before,
+            .pure-material-textfield-outlined > textarea + span::after {
+                content: "";
+                display: block;
+                box-sizing: border-box;
+                margin-top: 6px;
+                border-top: solid 1px;
+                border-top-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+                min-width: 10px;
+                height: 8px;
+                pointer-events: none;
+                box-shadow: inset 0 1px transparent;
+                transition: border-color 0.2s, box-shadow 0.2s;
+            }
+
+            .pure-material-textfield-outlined > input + span::before,
+            .pure-material-textfield-outlined > textarea + span::before {
+                margin-right: 4px;
+                border-left: solid 1px transparent;
+                border-radius: 4px 0;
+            }
+
+            .pure-material-textfield-outlined > input + span::after,
+            .pure-material-textfield-outlined > textarea + span::after {
+                flex-grow: 1;
+                margin-left: 4px;
+                border-right: solid 1px transparent;
+                border-radius: 0 4px;
+            }
+
+    /* Hover */
+    .pure-material-textfield-outlined:hover > input,
+    .pure-material-textfield-outlined:hover > textarea {
+        border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);
+        border-top-color: transparent;
+    }
+
+        .pure-material-textfield-outlined:hover > input + span::before,
+        .pure-material-textfield-outlined:hover > textarea + span::before,
+        .pure-material-textfield-outlined:hover > input + span::after,
+        .pure-material-textfield-outlined:hover > textarea + span::after {
+            border-top-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);
+        }
+
+        .pure-material-textfield-outlined:hover > input:not(:focus):placeholder-shown,
+        .pure-material-textfield-outlined:hover > textarea:not(:focus):placeholder-shown {
+            border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);
+        }
+
+    /* Placeholder-shown */
+    .pure-material-textfield-outlined > input:not(:focus):placeholder-shown,
+    .pure-material-textfield-outlined > textarea:not(:focus):placeholder-shown {
+        border-top-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+    }
+
+        .pure-material-textfield-outlined > input:not(:focus):placeholder-shown + span,
+        .pure-material-textfield-outlined > textarea:not(:focus):placeholder-shown + span {
+            font-size: inherit;
+            line-height: 68px;
+        }
+
+            .pure-material-textfield-outlined > input:not(:focus):placeholder-shown + span::before,
+            .pure-material-textfield-outlined > textarea:not(:focus):placeholder-shown + span::before,
+            .pure-material-textfield-outlined > input:not(:focus):placeholder-shown + span::after,
+            .pure-material-textfield-outlined > textarea:not(:focus):placeholder-shown + span::after {
+                border-top-color: transparent;
+            }
+
+    /* Focus */
+    .pure-material-textfield-outlined > input:focus,
+    .pure-material-textfield-outlined > textarea:focus {
+        border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+        border-top-color: transparent;
+        box-shadow: inset 1px 0 var(--pure-material-safari-helper1), inset -1px 0 var(--pure-material-safari-helper1), inset 0 -1px var(--pure-material-safari-helper1);
+        outline: none;
+    }
+
+        .pure-material-textfield-outlined > input:focus + span,
+        .pure-material-textfield-outlined > textarea:focus + span {
+            color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+        }
+
+            .pure-material-textfield-outlined > input:focus + span::before,
+            .pure-material-textfield-outlined > input:focus + span::after,
+            .pure-material-textfield-outlined > textarea:focus + span::before,
+            .pure-material-textfield-outlined > textarea:focus + span::after {
+                border-top-color: var(--pure-material-safari-helper1) !important;
+                box-shadow: inset 0 1px var(--pure-material-safari-helper1);
+            }
+
+    /* Disabled */
+    .pure-material-textfield-outlined > input:disabled,
+    .pure-material-textfield-outlined > input:disabled + span,
+    .pure-material-textfield-outlined > textarea:disabled,
+    .pure-material-textfield-outlined > textarea:disabled + span {
+        border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38) !important;
+        border-top-color: transparent !important;
+        color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+        pointer-events: none;
+    }
+
+        .pure-material-textfield-outlined > input:disabled + span::before,
+        .pure-material-textfield-outlined > input:disabled + span::after,
+        .pure-material-textfield-outlined > textarea:disabled + span::before,
+        .pure-material-textfield-outlined > textarea:disabled + span::after {
+            border-top-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38) !important;
+        }
+
+        .pure-material-textfield-outlined > input:disabled:placeholder-shown,
+        .pure-material-textfield-outlined > input:disabled:placeholder-shown + span,
+        .pure-material-textfield-outlined > textarea:disabled:placeholder-shown,
+        .pure-material-textfield-outlined > textarea:disabled:placeholder-shown + span {
+            border-top-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38) !important;
+        }
+
+            .pure-material-textfield-outlined > input:disabled:placeholder-shown + span::before,
+            .pure-material-textfield-outlined > input:disabled:placeholder-shown + span::after,
+            .pure-material-textfield-outlined > textarea:disabled:placeholder-shown + span::before,
+            .pure-material-textfield-outlined > textarea:disabled:placeholder-shown + span::after {
+                border-top-color: transparent !important;
+            }
+
+/* Faster transition in Safari for less noticable fractional font-size issue */
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+        .pure-material-textfield-outlined > input,
+        .pure-material-textfield-outlined > input + span,
+        .pure-material-textfield-outlined > textarea,
+        .pure-material-textfield-outlined > textarea + span,
+        .pure-material-textfield-outlined > input + span::before,
+        .pure-material-textfield-outlined > input + span::after,
+        .pure-material-textfield-outlined > textarea + span::before,
+        .pure-material-textfield-outlined > textarea + span::after {
+            transition-duration: 0.1s;
+        }
+    }
 }

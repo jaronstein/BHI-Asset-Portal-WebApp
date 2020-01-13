@@ -1,0 +1,121 @@
+﻿@model BHI_Asset_Portal_WebApp.Models.OrderModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>OrderModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BHIOrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BHIOrderNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CampaignName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CampaignName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountManager)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountManager)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastSubmittedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastSubmittedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastSavedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastSavedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScreenShotUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScreenShotUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

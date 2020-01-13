@@ -1,0 +1,95 @@
+﻿@model BHI_Asset_Portal_WebApp.Models.LineItem
+
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+
+                <div class="col-xs-10">
+
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LocationSublocation)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.StartDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.EndDate)
+                                </th>
+
+                            </tr>
+                            <tr>
+                                <th>
+                                    @Html.DisplayFor(model => model.Product)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(model => model.LocationSublocation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.StartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.EndDate)
+                                </td>
+
+
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+                <div class="col-xs-2">
+                    <label style="   display:none;" class="valid-check label label-success "> <span style="color:#0f9d58 " class="glyphicon glyphicon-ok-sign " aria-hidden="true"></span> Ready to Submit</label>
+                    <label style="  display:none;" class="valid-x label label-warning "> <span style="color:#fbc02d" class="glyphicon glyphicon-alert" aria-hidden="true"></span> Incompete</label>
+
+                </div>
+            </div>
+            <div style="margin-top:15px;" class="row">
+                <hr />
+                <div class="col-xs-4 ">
+                    <a style="cursor:pointer;" class=" SwitchLineItems"><label class="glyphicon glyphicon-chevron-down"></label> <label style="display:none;" class="glyphicon glyphicon-chevron-up"></label> Creative Sets</a>
+
+
+
+                </div>
+                <div class="col-xs-8">
+                    <label class="disabled taxonomy pull-right" style="display:none; font-weight:lighter; color:lightgrey">@Html.DisplayFor(model => model.Taxonomy)</label>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body LineItem-CreativeSets" style="position:absolute; left:-9000px;">
+
+            @foreach (var i in Model.Creative.Select((x, i) => new BHI_Asset_Portal_WebApp.ViewModels.EditCreativeSettViewModel { CreativeSet = x, Index = i }))
+            {
+        if (ViewBag.View == "TraffickerView")
+        {
+        @Html.Partial("/Views/CreativeSets/Details.cshtml", i.CreativeSet)
+        }
+        else
+        {
+        @Html.Partial("/Views/CreativeSets/edit.cshtml", i)
+        }
+            }
+            @if (ViewBag.View != "TraffickerView")
+            {
+            <div class="row">
+                <div class="col-md-12" style="margin-top:15px;">
+                    <input type="submit" value="Add New Creative Set" data-LineItemID="@Model.LineItemID" data-GivenType="@Model.Creative.First().GetType()" class="btn btn-primary AddNewBanner pull-right" />
+                    <div class="fa-3x pull-right" style="display:none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                  </div>
+            </div>
+            }
+        </div>
+       
+</div>
+    </div>
+

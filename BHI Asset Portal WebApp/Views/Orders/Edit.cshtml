@@ -1,0 +1,283 @@
+﻿@model BHI_Asset_Portal_WebApp.Models.Order
+
+@{
+    ViewBag.Title = "Add Asset Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Styles.Render("~/Scripts/dropzone/dropzone.css");
+    Styles.Render("~/Scripts/dropzone/basic.css");
+
+}
+<script typ="text/javascript">
+    Dropzone.autoDiscover = false;
+</script>
+<div style="padding:30px; padding-bottom:5px; border-color:lightgray; border-width:.25px; border-style:solid">
+    <div>
+        <h1 class="Thank-you-for-your-o">
+            Thank You For Your Order
+        </h1>
+        <h2 class="Work-Order-Number-A2">
+            @Html.DisplayNameFor(model => model.BHIOrderNumber)  @Html.DisplayFor(model => model.BHIOrderNumber)
+        </h2>
+        <h5 style="margin-top:0px;">
+            <label class="Order-Name">
+                @Html.DisplayNameFor(model => model.OrderName)
+            </label> <label class="BDX_FULTONHOMES_AZ-P-Cop">
+                @Html.DisplayFor(model => model.OrderName)
+            </label>
+        </h5>
+
+
+    </div>
+
+
+
+
+
+    <div>
+
+        @Html.HiddenFor(model => model.ID)
+        <div class="row" style="    margin-top: 30px;">
+            <form>
+                <div class="col-xs-4">
+                    @Html.EditorFor(model => model.AgentName, "PlaceHolderInput", new { Name = "Submitter Name" })
+
+                      @*@Html.EditorFor(model => model.AgentName, new { htmlAttributes = new { Required = "", style = "max-width:200px;", @class = "form-control" } })*@
+
+                </div>
+                <div class="col-xs-4">
+                    @Html.EditorFor(model => model.AgentEmail, "PlaceHolderInput", new { Name = "Submitter Email" })
+
+                    @*@Html.EditorFor(model => model.AgentEmail, new { htmlAttributes = new { Required = "", style = "max-width:200px;", @class = "form-control" } })*@
+
+                </div>
+                <div class="col-xs-4">
+
+                    @Html.EditorFor(model => model.AgencyName, "PlaceHolderInput", new { Name = "Agency Name" })
+
+                    @*@Html.EditorFor(model => model.AgentName, new { htmlAttributes = new { Required = "", style = "max-width:200px;", @class = "form-control" } })*@
+
+                </div>
+            </form>
+        </div>
+        <div class="row" style="    margin-top: 30px;">
+            <form>
+                <div class="col-xs-3">
+                    <label class="Body-2">
+                        @Html.DisplayNameFor(model => model.SalesRepName)
+                    </label>
+                    <p class="Body-3">
+                        @Html.DisplayFor(model => model.SalesRepName)
+
+                    </p>
+                </div>
+                <div class="col-xs-3">
+                    <label class="Body-2">
+                        @Html.DisplayNameFor(model => model.ADVAccountManagerName)
+                    </label>
+                    <p class="Body-3">
+                        @Html.DisplayFor(model => model.ADVAccountManagerName)
+                    </p>
+                </div>
+                <div class="col-xs-3">
+                    <label class="Body-2">
+                        @Html.DisplayNameFor(model => model.ContractStartDate)
+                    </label>
+                    <label class="Body-3">
+                        @Html.DisplayFor(model => model.ContractStartDate)
+                    </label>
+                </div>
+                <div class="col-xs-3">
+                    <label class="Body-2">
+                        @Html.DisplayNameFor(model => model.ContractEndDate)
+                    </label>
+                    <p class="Body-3">
+                        @Html.DisplayFor(model => model.ContractEndDate)
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row" style="margin-top:45px;">
+        <div class="col-xs-12">
+            <div class="panel" style="padding-left:15px; padding-right:15px; background-color:white; border-color:lightgray; border-width:.5px; border-style:solid;">
+                <h4>
+                    Your Next steps
+                </h4>
+                <div class="row Body-2" style="margin-top:15px;">
+                    <div class="col-md-2 col-md-offset-1 right-border">
+                        <p class="glyphicon glyphicon-open" style="text-align:center; font-size:45px; display:block"></p>
+                        <p class="Body-2">1. Upload creative sets & info</p>
+                    </div>
+                    <div class="col-md-2 right-border">
+                        <label class="glyphicon glyphicon-alert" style="text-align:center; font-size:45px; display:block"></label>
+                        <p>2. Resolve any missing or invalid info</p>
+                    </div>
+                    <div class="col-md-2 right-border">
+                        <label class="glyphicon glyphicon-floppy-saved" style="text-align:center; font-size:45px; display:block"></label>
+                        <p>3. Submit completed campaigns</p>
+
+                    </div>
+                    <div class="col-md-2 right-border">
+                        <label class="glyphicon glyphicon-user" style="text-align:center; font-size:45px; display:block"></label>
+                        <p>4. We verify your campaigns</p>
+
+                    </div>
+                    <div class="col-md-2">
+                        <label class="glyphicon glyphicon-ok" style="text-align:center; font-size:45px; display:block"></label>
+                        <p>5. Approved campaigns go live in 3-5 business days</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px; margin-bottom:45px;">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-9 right-border" style="165px">
+                    <h4>Campaigns Ordered</h4>
+                    <p>Help us help you! We can't launch your campaigns live until you provide us the creative assets and info required for each campaign in your order.</p>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#Modal_UploadZip"><label class="glyphicon glyphicon-plus"></label> Upload Image Zip File</a>
+                    <div class="modal fade" id='Modal_UploadZip' tabindex="-1" role="dialog" aria-labelledby="UploadZip">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Upload a Zip File with Images</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>How to use Zip files in the Asset Portal</h5>
+                                    <ol>
+                                        <li>Select a file by clicking or dragging below.</li>
+                                        <li>
+                                            The file will upload, unzip, and then download all of the images in the file selected.
+                                            Please be patient, this process can take a while on big files.
+                                        </li>
+                                        <li>The images will appear at the bottom of the screen. You can drag them into image area for any creative set they belong.</li>
+                                    </ol>
+                                    <div style='width:100%; height:250px;' class="ZipUploader dropzone" id="ZipUpload" addRemoveLinks="false" action="/CreativeSets/UploadJavaScript">
+                                        <div class="dz-message">
+                                            Drag or Click to select a Zip File to upload
+                                        </div>
+                                    </div>
+                                    <label class="error zip-dropzone-error" style="display:none;">This file is either not a Zip file, or doesn't have any images in the root directory. Please try to upload another file. </label>
+                                    <script>
+                                        Dropzone.autoDiscover = false;
+
+                                        $('#ZipUpload').dropzone({
+
+                                            addRemoveLinks: false,
+                                            maxFiles: 9,
+                                            createImageThumbnails: true,
+                                            autoProcessQueue: true,
+                                            url: '/CreativeSets/UploadZip',
+
+                                            params: {
+                                            },
+                                            init: function () {
+                                                $("#ZipUpload").find('.dz-progress').append('<div style="text-align:center;" class="fa-3x" >< i class="fas fa-spinner fa-spin" ></i > </div >');
+                                                this.on("error", function (file) { this.removeFile(file); $("#ZipUpload").siblings('.zip-dropzone-error').show(); });
+                                                this.on("processing", function (file) {
+                                                    console.log($(file.previewElement)); $(file.previewElement).find('.dz-progress').hide();
+                                                    $(file.previewElement).append('<div style="text-align:center;" class="fa-3x" ><i class="fas fa-spinner fa-spin" ></i > </div >');
+                                                });
+                                                this.on("success", function (file, response) {
+                                                    console.log(response.Images.length);
+                                                    if (response.success == true && response.Images.length > 0) {
+                                                        $carouselInner = $('#unzippedCarousel');
+
+                                                        var index = 0;
+                                                        response.Images.forEach(function (element) {
+                                                            $carouselInner.append('<div class="card" draggable="true" style="display:inline-block"><table><tr><td><img class="draggableImage" draggable="true" src="' + element + '" class="" Name="' + response.Names[index] + '" style="max-height:60px; width:auto;" alt="..."></img></td></tr><tr><td><label>' + response.Names[index] + '</label></td></tr><tr><td>' + response.Widths[index] + 'x' + response.Heights[index] + ' </td></tr></div>');
+                                                            index++;
+                                                        });
+                                                        if (index > 0) {
+                                                            $('.modal').modal('hide');
+                                                            $carouselInner.parent().show();
+                                                            this.removeAllFiles(false);
+                                                            $("#ZipUpload").siblings('.zip-dropzone-error').hide();
+
+                                                        }
+                                                        else {
+
+                                                        }
+
+                                                    }
+                                                    else {
+                                                        var error = "This file was not able to be unzipped. Please try another file.";
+                                                        this.removeFile(file);
+                                                        console.log($("#ZipUpload"));
+                                                        console.log($("#ZipUpload").siblings());
+                                                        $("#ZipUpload").siblings('.zip-dropzone-error').show();
+                                                    }
+                                                }
+                                                );
+
+                                            },
+                                        });
+
+                                    </script>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3" style="padding-left:10px">
+                    <h5>Help Center</h5>
+                    <p>
+                        <a href="~/Content/BDX_Specs.pdf"> BDX Ad Specifications</a>
+                    </p>
+                    <p><a>Best Pracitces Guide</a></p>
+                    <p style="  color: rgba(0, 0, 0, 0.6);">
+                        Contact Us:
+                    </p>
+                    <p style="margin-top:-15px">
+                        <a href="mailto:traffc@bdx.com" style="margin-top:0px;">traffic@bdx.com</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @foreach (var l in Model.LineItems)
+    {
+        @Html.Partial("/Views/Line Item/view.cshtml", l);
+    }
+    <div class="" style="margin-bottom:100px;">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>Submission Summary</h4>
+                <label id="valid-items"> </label> of your @Model.LineItems.Count line items are valid and ready to be sumitted to your account manager.
+                <button id="SendToAMBttn" class="btn btn-success pull-right">
+                    Submit to Account Manager Last Submitted: @(Model.LastSubmittedDate.HasValue ? @Model.LastSubmittedDate.Value.ToString() : "")
+                </button>
+                <div class="fa-3x pull-right" style="display:none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer navbar-fixed-bottom" style="display:none; margin-top:30px">
+        <div id="unzippedCarousel" class="scrolling-wrapper container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 style="margin:5px;">Uploaded Files</h3>
+                    <h5>Drag and drop a file onto the screen to use it.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    
+</div>
+
+    @section Scripts {
+
+        @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+        @Scripts.Render("~/scripts/Orders.js")
+
+    }

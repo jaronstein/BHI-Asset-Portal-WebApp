@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.Mvc;
+using System.Linq;
+
 
 namespace BHI_Asset_Portal_WebApp.Models
 {
@@ -70,6 +74,13 @@ namespace BHI_Asset_Portal_WebApp.Models
         public string Email { get; set; }
 
         [Required]
+        [Display (Name="User Name")]
+        public string UserName { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -77,10 +88,28 @@ namespace BHI_Asset_Portal_WebApp.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
 
+        [Required]
+        public string Organization { get; set; }
+
+        public List<IdentityRole> Roles { get; set; }
+        public List<string> RoleIDs
+        {
+            get
+            {
+                if (roleIDs != null)
+                    return roleIDs;
+                else return null;
+            }
+            set { roleIDs = value; }
+        }
+        public IEnumerable<SelectListItem> AllRoles { get; set; }
+
+        private List<string> roleIDs;
+
+    }
     public class ResetPasswordViewModel
     {
         [Required]
@@ -96,7 +125,7 @@ namespace BHI_Asset_Portal_WebApp.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

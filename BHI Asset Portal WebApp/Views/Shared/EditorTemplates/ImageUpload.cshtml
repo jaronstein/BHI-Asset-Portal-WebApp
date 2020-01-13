@@ -1,0 +1,136 @@
+﻿@using Microsoft.AspNet.Identity.EntityFramework;
+
+@model BHI_Asset_Portal_WebApp.Models.CreativeSet
+
+@{
+    var dropZoneName = ViewData["ColumnName"].ToString() + ViewData["CreativeSize"].ToString() + Model.CreativeSetID.ToString();
+    if (ViewData["Ratio"] == null)
+    {
+        ViewData["Ratio"] = 1;
+    }
+    var calcWidth = int.Parse(ViewData["Width"].ToString()) / double.Parse(ViewData["Ratio"].ToString());
+    var calcHeight = int.Parse(ViewData["Height"].ToString()) / double.Parse(ViewData["Ratio"].ToString());
+    var hiddenImage = Model.GetType().GetProperties().Where(a => a.Name == ViewData["ColumnName"].ToString()).First().GetValue(Model, null);
+    var hiddenImageValue = hiddenImage == null ? "" : hiddenImage;
+}
+
+<div tabindex="-1" iHeight="@ViewData["Height"]" iWidth="@ViewData["Width"]" style='width:@calcWidth.ToString()px; height:@calcHeight.ToString()px;' creativeSize='@ViewData["CreativeSize"]' columnName='@ViewData["ColumnName"]' creativeSetID="@Model.CreativeSetID" dropZoneImage="" class="@ViewData["ColumnName"] ImageUpload NewName dropzone" id="@dropZoneName" addRemoveLinks="true" action="/CreativeSets/UploadFile" data-creativesetid="@Model.CreativeSetID">
+    <div class="dz-message">
+        <p>Drag to upload or Click to Select a file</p>
+        <p>Image must be @ViewData["Width"]px wide and @ViewData["Height"]px tall</p>
+    </div>
+
+</div>
+<label class="error image-dropzone-error" style="display:none;">This file is either not an image file. Please try to upload another file. </label>
+
+<div style="opacity:0" class="hidden-image-url"> @Html.TextBox(dropZoneName + "_hidden", hiddenImageValue.ToString(), new { id = dropZoneName + "_hidden", tabindex="-1", @class = "hidden-image-url", Required = "" }) </div>
+
+<script>
+    $('#@dropZoneName').dropzone({
+
+        addRemoveLinks: true,
+        maxFiles: 1,
+        createImageThumbnails: true,
+        thumbnailWidth: @calcWidth,
+        thumbnailHeight: @calcHeight,
+        thumbnailMethod: 'contain',
+        acceptedFiles: 'image/*',
+        resizeWidth: @ViewData["Width"],
+        resizeHeight: @ViewData["Height"],
+        withCredentials: false,
+        params: {
+            creativesetid: '@Model.CreativeSetID',
+            creativename: @dropZoneName,
+            creativesize: '@ViewData["CreativeSize"]',
+            columnname: '@ViewData["ColumnName"]',
+            height: @ViewData["Height"],
+            width: @ViewData["Width"],
+            maxSize: 45000 //please change
+
+        },
+        headers: {
+            'Cache-Control': '',
+            'X-Requested-With': ''
+        },
+        init: function () {
+            var @dropZoneName = this;
+            @(dropZoneName).on("error", function (file) {
+                console.log('error');
+                @(dropZoneName).removeFile(file);
+                    $('#@dropZoneName').siblings('.image-dropzone-error').show();
+
+         });
+            $.get("/CreativeSets/GetImageURL",
+                {
+                    CreativeSetID: '@Model.CreativeSetID',
+                    ColumnName: '@ViewData["ColumnName"]',
+
+                },
+                function (data) {
+                    var fileName = data.response;
+                    if (fileName != '' && fileName != undefined) {
+            //    @(dropZoneName ).files[0].previewElement.remove();
+
+
+                        var mockFile = { name: "Filename", size: 1 };
+                    // Call the default addedfile event handler
+                    @(dropZoneName ).emit("addedfile", mockFile);
+
+                        // And optionally show the thumbnail of the file:
+                        //change this to be dynamic'
+                    @(dropZoneName).createThumbnailFromUrl(mockFile, fileName, null, true);
+@(dropZoneName).files.push(mockFile);
+                        $('#@dropZoneName').siblings('.image-dropzone-error').hide();
+                     @(dropZoneName).emit("complete", mockFile);
+                    }
+                }
+            );
+
+
+                @(dropZoneName).on("thumbnail", function (file, dataURL) {
+                var image = new Image;
+                image.src = dataURL;
+
+
+
+
+                    $('#@dropZoneName').css('outline-color', 'green');
+                $('#@dropZoneName').siblings('.hidden-image-url').children(0).text('filled');
+                    if ($('#@dropZoneName').closest('form').validate().checkForm()) {
+                        showSetSuccess($(this).closest('form'));
+                        calculateValidLineItems();
+                    }
+                    if (file.size != 1) {
+                        file.acceptDimensions();
+                    }
+
+            });
+            @(dropZoneName).on("success", function (file, response) {
+                @(dropZoneName).createThumbnailFromUrl(file, response.file);
+
+                });
+        @(dropZoneName).on("removedfile", function (file) {
+                $.post("/CreativeSets/DeleteFile",
+                    {
+                    CreativeSetID: '@Model.CreativeSetID',
+                        ColumnName: '@ViewData["ColumnName"]',
+
+                    }
+                );
+
+                $('#@dropZoneName').css('outline-color', 'red');
+                $('#@dropZoneName').siblings('.hidden-image-url').children(0).val('');
+
+            });
+        },
+        accept: function (file, done) {
+            file.rejectDimensions = function () {
+                done("Please make sure the image width and height are the correct dimensions. To upload a new image, remove the file using the Remove File at the bottum of the image, and upload a new image.");
+            };
+            file.acceptDimensions = done;
+        },
+
+
+
+    });
+</script>

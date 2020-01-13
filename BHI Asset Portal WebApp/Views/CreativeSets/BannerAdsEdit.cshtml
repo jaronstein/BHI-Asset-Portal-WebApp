@@ -1,0 +1,102 @@
+﻿@model BHI_Asset_Portal_WebApp.Models.BannerAds
+
+
+
+    
+<div class="form-horizontal">
+    @Html.HiddenFor(model => model.CreativeSetID,  new { @class = "CreativeSetID" })
+
+    <table>
+        <thead>
+            <tr>
+                <th >
+                    Size
+                </th>
+                <th>
+                    Creative
+                </th>
+                <th style="width:35%;">
+                    Landing Page URL/Click Tracker URL
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    Leaderboard  728 x 90
+                    
+                </th>
+                <td>
+
+                    @Html.EditorForModel("ImageUpload", new { Width = 728, Height = 90, CreativeSize = "Leaderboard", ColumnName = "LeaderboardImageURL", Ratio = 1.5 })
+
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.LeaderboardLandingURL, "URLField", new { SetIDName = "LeaderboardLandingURL" + Model.CreativeSetID, OnBlur = "FillDown" })
+
+                </td>
+
+            </tr>
+            
+            <tr>
+                <th>
+                    Skyscraper  160 x 600
+
+                </th>
+                <td>
+                    @Html.EditorForModel("ImageUpload", new { Width = 160, Height = 600, CreativeSize = "Skyscraper", ColumnName = "SkyscraperImageURL" })
+
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SkyscraperLandingURL, "URLField", new { SetIDName = "SkyscraperLandingURL" + Model.CreativeSetID })
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Med Rectangle  300 x 250
+
+                </th>
+                <td>
+
+                    @Html.EditorForModel("ImageUpload", new { Width = 300, Height = 250, CreativeSize = "Medium_Rectangle", ColumnName = "MediumRectangleImageURL" })
+
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.MediumRectangleLandingURL, "URLField", new { SetIDName = "MediumRectangleLandingURL" + Model.CreativeSetID })
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Half Page  300 x 600
+
+                </th>
+                <td>
+                    @Html.EditorForModel("ImageUpload", new { Width = 300, Height = 600, CreativeSize = "Half_Page", ColumnName = "HalfPageImageURL" })
+
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.HalfPageLandingURL, "URLField", new { SetIDName = "HalfPageLandingURL" + Model.CreativeSetID })
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Mobile Leaderboard  320 x 50
+
+                </th>
+                <td>
+                    @Html.EditorForModel("ImageUpload", new { Width = 320, Height = 50, CreativeSize = "Mobile_Leaderboard", ColumnName = "MobileLeaderboardImageURL" })
+
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.MobileLeaderboardLandingURL, "URLField", new { SetIDName = "MobileLeaderboardLandingURL" + Model.CreativeSetID })
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+</div>
+

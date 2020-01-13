@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using BHI_Asset_Portal_WebApp.Models;
+using BHI_Asset_Portal_WebApp.ViewModels;
 
 namespace BHI_Asset_Portal_WebApp.Controllers
 {

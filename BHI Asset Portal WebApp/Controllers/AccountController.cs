@@ -7,8 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+using System.Collections.Generic;
 using BHI_Asset_Portal_WebApp.Models;
+using System.Web.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using BHI_Asset_Portal_WebApp.ViewModels;
 
 namespace BHI_Asset_Portal_WebApp.Controllers
 {
@@ -90,6 +94,85 @@ namespace BHI_Asset_Portal_WebApp.Controllers
                     return View(model);
             }
         }
+        private List<IdentityRole> GetUserRoles(ApplicationUser User)
+        {
+            ApplicationDbContext c = new ApplicationDbContext();
+            var userRoles = c.Roles.ToList();
+
+            var roleNames = (from r in userRoles
+                                 from u in r.Users
+                                 where u.UserId == User.Id
+                                 select r).ToList();
+            return roleNames;
+        }
+          
+      //  [Authorize(Roles = "Admin")]
+      [AllowAnonymous]
+        public ActionResult ViewAllUsers()
+        {
+            ApplicationDbContext c = new ApplicationDbContext();
+
+            var users = (from user in c.Users.ToList()
+                         select new RolesViewModel
+                         {
+                             
+                             Roles =  GetUserRoles(user),
+                            UserName = user.UserName,
+                            Email = user.Email,
+                            Id = user.Id
+
+                        }).ToList();
+            
+            return View(users);
+        }
+      //  [Authorize(Roles = "Admin")]
+        public ActionResult EditUser(string id)
+        {
+            ApplicationDbContext c = new ApplicationDbContext();
+            var users = (from user in c.Users.ToList()
+                         where user.Id == id
+                         select new RolesViewModel
+                         {
+                             Roles = GetUserRoles(user),
+                             UserName = user.UserName,
+                             Email = user.Email,
+                             Id = user.Id,
+                             allRoles = c.Roles.Select(x => new SelectListItem { Text = x.Name, Value = x.Id })
+                         }).FirstOrDefault();
+            
+
+            return View(users);
+        }
+      //  [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult EditUser(RolesViewModel model)
+        {
+            var c =  new ApplicationDbContext();
+            var user = (from u in c.Users
+                         where u.Id == model.Id
+                        select u).FirstOrDefault();
+            user.UserName = model.UserName;
+            user.Email = model.Email;
+
+
+            List<IdentityUserRole> roles = new List<IdentityUserRole>();
+            foreach(var r in model.RoleIDs)
+            {
+                IdentityUserRole identityUserRole = new IdentityUserRole();
+                identityUserRole.RoleId = r;
+                identityUserRole.UserId = model.Id;
+                if (user.Roles.Where(s => s.RoleId == r).Count() == 0)
+                    user.Roles.Add(identityUserRole);
+
+            }
+            var inRoles = user.Roles.Where(m => model.RoleIDs.Select(i => i).Contains(m.RoleId));
+            var deleteRoles = user.Roles.Except(inRoles);
+            
+            user.Roles.Where(r => deleteRoles.Contains(r)).Select(s => user.Roles.Remove(s));
+            c.SaveChanges();
+            return RedirectToAction("ViewAllUsers");
+
+        }
 
         //
         // GET: /Account/VerifyCode
@@ -139,35 +222,53 @@ namespace BHI_Asset_Portal_WebApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            ApplicationDbContext context = new ApplicationDbContext();
+            var allRoles = context.Roles.Select(x => new SelectListItem { Text = x.Name, Value = x.Id });
+            RegisterViewModel viewModel = new RegisterViewModel { AllRoles = allRoles };
+            return View(viewModel);
         }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Organization = model.Organization, Name=model.Name};
+                List<IdentityUserRole> roles = new List<IdentityUserRole>();
+                
+                 var result = await UserManager.CreateAsync(user, model.Password);
+               
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    foreach (var r in model.RoleIDs)
+                    {
+                        IdentityUserRole identityUserRole = new IdentityUserRole();
+                        identityUserRole.RoleId = r;
+                        user.Roles.Add(identityUserRole);
+                    }
+
+                    UserManager.Update(user);
+
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ViewAllUsers");
+
                 }
                 AddErrors(result);
             }
-
+            ApplicationDbContext context = new ApplicationDbContext();
+            var allRoles = context.Roles.Select(x => new SelectListItem { Text = x.Name, Value = x.Id });
+            model.AllRoles = allRoles;
             // If we got this far, something failed, redisplay form
             return View(model);
         }

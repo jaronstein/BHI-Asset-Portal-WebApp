@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace BHI_Asset_Portal_WebApp.Models
+namespace BHI_Asset_Portal_WebApp.ViewModels
 {
     public class IndexViewModel
     {
